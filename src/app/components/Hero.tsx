@@ -91,7 +91,7 @@ const Hero = () => {
           loop
           playsInline
           preload="auto"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover z-10"
           onLoadedData={handleVideoLoad}
           onCanPlay={handleVideoLoad}
           onError={handleVideoError}
@@ -105,17 +105,17 @@ const Hero = () => {
             setIsVideoPlaying(false);
           }}
           style={{ 
-            zIndex: 1, 
-            opacity: 1,
-            border: '5px solid red',
-            backgroundColor: 'transparent'
+            opacity: 1
           }}
         >
           <source src="/videos/banner.mp4" type="video/mp4" />
         </video>
         
-        {/* Test Background Color - AZUL PARA VER SI SE VE */}
-        <div className="absolute inset-0 bg-blue-500 bg-opacity-30" style={{ zIndex: 0 }} />
+        {/* Dark Overlay para mejorar legibilidad del texto */}
+        <div className="absolute inset-0 bg-black bg-opacity-30 z-20" />
+        
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40 z-20" />
       </div>
       
       {/* Loading Indicator */}
@@ -129,13 +129,13 @@ const Hero = () => {
       )}
       
       {/* Debug Info */}
-      <div className="absolute top-4 left-4 bg-black bg-opacity-80 text-white px-3 py-2 rounded text-xs" style={{ zIndex: 25 }}>
+      <div className="absolute top-4 left-4 bg-black bg-opacity-80 text-white px-3 py-2 rounded text-xs z-50">
         <p>Video cargado: {videoLoaded ? '✅' : '❌'}</p>
         <p>Video reproduciendo: {isVideoPlaying ? '▶️' : '⏸️'}</p>
-        <p>Z-Index video: 1</p>
+        <p>Z-Index video: 10</p>
         <p>Opacity: 100%</p>
-        <p>Borde rojo visible: ✅</p>
-        <p>Fondo azul visible: ✅</p>
+        <p>Video visible: {videoLoaded && isVideoPlaying ? '✅' : '❌'}</p>
+        <p>Archivo: /videos/banner.mp4</p>
       </div>
       
       {/* Mini Video Preview para debug */}
@@ -168,28 +168,24 @@ const Hero = () => {
         </div>
       )}
       
-      {/* Video Overlay for better text readability */}
-      <div className="absolute inset-0 bg-black bg-opacity-40" style={{ zIndex: 2 }} />
-      
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/60" style={{ zIndex: 3 }} />
+
 
       {/* Background Pattern (as fallback) */}
-      <div className="absolute inset-0 opacity-5" style={{ zIndex: 4 }}>
+      <div className="absolute inset-0 opacity-5 z-15">
         <div className="absolute inset-0" style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
         }} />
       </div>
 
       {/* Animated Background Elements */}
-      <div className="absolute inset-0" style={{ zIndex: 4 }}>
+      <div className="absolute inset-0 z-15">
         <div className="absolute top-20 left-10 w-2 h-2 bg-red-500 rounded-full animate-pulse" />
         <div className="absolute top-40 right-20 w-3 h-3 bg-red-400 rounded-full animate-bounce" style={{ animationDelay: '1s' }} />
         <div className="absolute bottom-40 left-20 w-2 h-2 bg-red-600 rounded-full animate-ping" style={{ animationDelay: '2s' }} />
         <div className="absolute bottom-20 right-10 w-4 h-4 bg-red-300 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }} />
       </div>
 
-      <div className="relative text-center px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto" style={{ zIndex: 20 }}>
+      <div className="relative text-center px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto z-30">
         {/* Main Title */}
         <div className={`transform transition-all duration-1000 ${
           isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
