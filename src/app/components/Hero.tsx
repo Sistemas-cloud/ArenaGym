@@ -177,7 +177,7 @@ const Hero = () => {
         }} />
       </div>
 
-      {/* Animated Background Elements */}
+      {/* Animated Background Elements - Fixed positions to avoid hydration mismatch */}
       <div className="absolute inset-0 z-15">
         <div className="absolute top-20 left-10 w-2 h-2 bg-red-500 rounded-full animate-pulse" />
         <div className="absolute top-40 right-20 w-3 h-3 bg-red-400 rounded-full animate-bounce" style={{ animationDelay: '1s' }} />
