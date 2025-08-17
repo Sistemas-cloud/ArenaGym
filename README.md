@@ -1,23 +1,27 @@
 # 🏋️ Arena Gym - Sitio Web Moderno
 
-Un sitio web moderno y responsivo para Arena Gym, un gimnasio exclusivo en Tampico, México. Desarrollado con Next.js 15, React y Tailwind CSS.
+Un sitio web moderno y responsivo para Arena Gym, desarrollado con Next.js 15, React y Tailwind CSS.
 
 ## ✨ Características
 
-- **Diseño Moderno**: Interfaz elegante y profesional con animaciones suaves
-- **Video de Fondo**: Hero section con video de fondo `banner.mp4`
-- **Páginas Individuales**: Secciones dedicadas para mejor organización
-- **Tienda en Línea**: Simulación de e-commerce con carrito de compras
-- **Responsive**: Optimizado para todos los dispositivos
-- **SEO Optimizado**: Metadatos completos para mejor visibilidad
+- **Diseño Moderno**: Interfaz elegante y profesional
+- **Responsivo**: Optimizado para todos los dispositivos
+- **Video de Fondo**: Hero section con video de fondo dinámico
+- **Múltiples Páginas**: 
+  - Página principal con secciones integradas
+  - Página individual de "Acerca de Nosotros"
+  - Página de "Planes y Precios"
+  - Tienda en línea (simulada)
+- **Navegación Intuitiva**: Menú de navegación con enlaces a páginas individuales
+- **SEO Optimizado**: Metadatos completos para mejor posicionamiento
 
 ## 🚀 Tecnologías Utilizadas
 
-- **Next.js 15** - Framework de React con App Router
-- **React 18** - Biblioteca de interfaz de usuario
-- **TypeScript** - Tipado estático para JavaScript
-- **Tailwind CSS** - Framework de CSS utilitario
-- **Framer Motion** - Animaciones y transiciones
+- **Next.js 15**: Framework de React con App Router
+- **React 18**: Biblioteca de interfaz de usuario
+- **TypeScript**: Tipado estático para JavaScript
+- **Tailwind CSS**: Framework de CSS utilitario
+- **Framer Motion**: Animaciones y transiciones
 
 ## 📁 Estructura del Proyecto
 
@@ -25,44 +29,42 @@ Un sitio web moderno y responsivo para Arena Gym, un gimnasio exclusivo en Tampi
 src/
 ├── app/
 │   ├── components/          # Componentes reutilizables
-│   │   ├── Hero.tsx        # Sección principal con video
-│   │   ├── Navigation.tsx  # Barra de navegación
-│   │   ├── AboutUs.tsx     # Sección "Acerca de"
-│   │   ├── Shop.tsx        # Componente de tienda
-│   │   └── ...
-│   ├── tienda/             # Página de tienda
+│   ├── tienda/             # Página de la tienda
 │   ├── planes/             # Página de planes y precios
-│   ├── acerca-de/          # Página "Acerca de nosotros"
+│   ├── acerca-de/          # Página "Acerca de Nosotros"
 │   ├── layout.tsx          # Layout principal
-│   └── page.tsx            # Página de inicio
+│   └── page.tsx            # Página principal
 ├── public/
 │   ├── images/             # Imágenes del proyecto
-│   ├── videos/             # Videos (banner.mp4)
-│   └── ...
-└── ...
+│   └── videos/             # Videos de fondo
+└── globals.css             # Estilos globales
 ```
 
-## 🎯 Funcionalidades Principales
+## 🎯 Secciones Principales
 
-### 1. Hero Section con Video
-- Video de fondo `banner.mp4` en pantalla completa
-- Overlays para legibilidad del texto
-- Controles de video integrados
+### Hero Section
+- Video de fondo dinámico (`banner.mp4`)
+- Título principal "ARENA GYM"
+- Llamadas a la acción
+- Estadísticas del gimnasio
 
-### 2. Navegación
-- Menú responsive para móvil y desktop
-- Logo de Arena Gym integrado
-- Enlaces a páginas individuales
+### Acerca de Nosotros
+- Historia del gimnasio
+- Misión y visión
+- Perfil del fundador
+- Valores corporativos
 
-### 3. Tienda en Línea
-- Catálogo de productos con filtros
-- Carrito de compras funcional (simulado)
-- Diseño inspirado en la tienda original de Wix
+### Planes y Precios
+- Diferentes membresías
+- Características de cada plan
+- Precios transparentes
+- Formulario de contacto
 
-### 4. Páginas Individuales
-- **Tienda**: `/tienda` - Catálogo completo
-- **Planes**: `/planes` - Precios y membresías
-- **Acerca de**: `/acerca-de` - Historia y misión
+### Tienda en Línea
+- Catálogo de productos
+- Filtros de búsqueda
+- Carrito de compras simulado
+- Proceso de checkout
 
 ## 🛠️ Instalación y Uso
 
@@ -74,84 +76,80 @@ src/
 ```bash
 # Clonar el repositorio
 git clone https://github.com/Sistemas-cloud/ArenaGym.git
+
+# Navegar al directorio
 cd ArenaGym
 
 # Instalar dependencias
 npm install
 
-# Ejecutar en desarrollo
+# Ejecutar en modo desarrollo
 npm run dev
 
 # Construir para producción
 npm run build
 
-# Ejecutar en producción
+# Iniciar en modo producción
 npm start
 ```
 
 ### Variables de Entorno
-Crea un archivo `.env.local` si es necesario:
+Crea un archivo `.env.local` en la raíz del proyecto:
 ```env
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
 ```
 
-## 📱 Responsive Design
+## 🌐 Despliegue
 
-El sitio está optimizado para:
-- **Desktop**: 1024px+
-- **Tablet**: 768px - 1023px
-- **Mobile**: 320px - 767px
+El proyecto está optimizado para desplegar en:
+- **Vercel** (recomendado para Next.js)
+- **Netlify**
+- **AWS Amplify**
+- **Cualquier hosting estático**
+
+## 📱 Responsividad
+
+- **Mobile First**: Diseño optimizado para móviles
+- **Breakpoints**: 
+  - Mobile: 320px+
+  - Tablet: 768px+
+  - Desktop: 1024px+
+  - Large: 1280px+
 
 ## 🎨 Personalización
 
-### Colores Principales
-- **Rojo**: `#dc2626` (Arena Gym brand)
-- **Negro**: `#000000` (Fondo principal)
-- **Blanco**: `#ffffff` (Texto principal)
+### Colores
+- **Primario**: Rojo (#DC2626)
+- **Secundario**: Negro (#000000)
+- **Acentos**: Blanco (#FFFFFF)
 
 ### Fuentes
-- **Geist Sans**: Títulos y texto principal
-- **Geist Mono**: Código y elementos técnicos
+- **Principal**: Geist Sans
+- **Monospace**: Geist Mono
 
-## 🚀 Despliegue
+## 🔧 Scripts Disponibles
 
-### Vercel (Recomendado)
-```bash
-npm install -g vercel
-vercel
+```json
+{
+  "dev": "next dev --turbopack",
+  "build": "next build",
+  "start": "next start",
+  "lint": "next lint"
+}
 ```
 
-### Netlify
-```bash
-npm run build
-# Subir la carpeta .next a Netlify
-```
+## 📄 Licencia
 
-### Servidor Tradicional
-```bash
-npm run build
-npm start
-```
+Este proyecto es para fines educativos y de portafolio.
 
-## 📝 Licencia
+## 👨‍💻 Autor
 
-Este proyecto es para uso educativo y de portafolio. Arena Gym es una marca registrada.
+Desarrollado como proyecto universitario para Arena Gym.
 
 ## 🤝 Contribuciones
 
-Las contribuciones son bienvenidas. Por favor:
-1. Fork el proyecto
-2. Crea una rama para tu feature
-3. Commit tus cambios
-4. Push a la rama
-5. Abre un Pull Request
-
-## 📞 Contacto
-
-- **Desarrollador**: [Tu Nombre]
-- **GitHub**: [@tu-usuario]
-- **Proyecto**: [ArenaGym](https://github.com/Sistemas-cloud/ArenaGym)
+Las contribuciones son bienvenidas. Por favor, abre un issue o pull request.
 
 ---
 
-**Arena Gym** - *Firmes y Dignos* 🏋️‍♂️
+**Arena Gym** - Transformando vidas a través del fitness 🏋️‍♂️
