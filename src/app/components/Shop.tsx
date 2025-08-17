@@ -337,7 +337,7 @@ const Shop = () => {
 
             {/* Products */}
             <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
-              {filteredProducts.map((product, index) => (
+                             {filteredProducts.map((product, index) => (
                 <div
                   key={product.id}
                   className={`bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 ${
@@ -489,7 +489,7 @@ const Shop = () => {
               ) : (
                 <div>
                   <div className="space-y-4 mb-6">
-                    {cart.map((item, index) => (
+                                         {cart.map((item) => (
                       <div key={`${item.id}-${item.selectedSize}-${item.selectedColor}`} className="flex items-center space-x-4 p-4 border border-gray-200 rounded-lg">
                         <div className="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center">
                           <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">

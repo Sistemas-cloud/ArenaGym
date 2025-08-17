@@ -75,8 +75,8 @@ const Hero = () => {
     }
   };
 
-  const handleVideoError = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
-    console.error('Video failed to load:', e);
+  const handleVideoError = () => {
+    console.error('Video failed to load');
     setVideoLoaded(false);
   };
 
