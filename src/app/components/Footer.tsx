@@ -49,7 +49,7 @@ const Footer = () => {
               <li><Link href="/acerca-de" className="text-gray-300 hover:text-red-400 transition-colors duration-300">Acerca de</Link></li>
               <li><Link href="/planes" className="text-gray-300 hover:text-red-400 transition-colors duration-300">Planes y Precios</Link></li>
               <li><Link href="/tienda" className="text-gray-300 hover:text-red-400 transition-colors duration-300">Tienda</Link></li>
-              <li><a href="/#contacto" className="text-gray-300 hover:text-red-400 transition-colors duration-300">Contacto</a></li>
+              <li><button onClick={() => document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' })} className="text-gray-300 hover:text-red-400 transition-colors duration-300">Contacto</button></li>
             </ul>
           </div>
 

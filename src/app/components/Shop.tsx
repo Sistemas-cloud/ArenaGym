@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
 
 interface Product {
   id: number;
@@ -99,7 +98,7 @@ const Shop = () => {
 
   // Filter products based on current filters
   useEffect(() => {
-    let filtered = products.filter(product => {
+    const filtered = products.filter(product => {
       const priceInRange = product.price >= filters.minPrice && product.price <= filters.maxPrice;
       const sizeMatch = filters.selectedSizes.length === 0 || 
         product.sizes.some(size => filters.selectedSizes.includes(size));
@@ -176,7 +175,7 @@ const Shop = () => {
     return cart.reduce((total, item) => total + item.quantity, 0);
   };
 
-  const handleFilterChange = (filterType: string, value: any) => {
+  const handleFilterChange = (filterType: string, value: string | number | string[]) => {
     setFilters(prev => ({
       ...prev,
       [filterType]: value

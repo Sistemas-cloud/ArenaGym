@@ -145,7 +145,7 @@ const Testimonials = () => {
                 {/* Testimonial Text */}
                 <div className="md:col-span-2">
                   <blockquote className="text-lg md:text-xl leading-relaxed text-gray-200 italic">
-                    "{testimonials[currentTestimonial].text}"
+                    &ldquo;{testimonials[currentTestimonial].text}&rdquo;
                   </blockquote>
                 </div>
               </div>
@@ -201,7 +201,7 @@ const Testimonials = () => {
                 </div>
               </div>
               <p className="text-gray-300 text-sm leading-relaxed line-clamp-3">
-                "{testimonial.text}"
+                &ldquo;{testimonial.text}&rdquo;
               </p>
             </div>
           ))}

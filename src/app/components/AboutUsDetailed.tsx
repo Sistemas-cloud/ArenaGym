@@ -224,8 +224,8 @@ const AboutUsDetailed = () => {
                   
                   <div className="bg-red-50 p-6 rounded-2xl border-l-4 border-red-600">
                     <p className="text-red-800 font-medium italic">
-                      "Creo en el poder de la disciplina, la constancia y el trato humano para lograr resultados sostenibles. 
-                      Arena Gym es el reflejo de esa visión: un lugar donde el bienestar se trabaja con seriedad y pasión."
+                      &ldquo;Creo en el poder de la disciplina, la constancia y el trato humano para lograr resultados sostenibles. 
+                      Arena Gym es el reflejo de esa visión: un lugar donde el bienestar se trabaja con seriedad y pasión.&rdquo;
                     </p>
                   </div>
 
