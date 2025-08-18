@@ -93,7 +93,7 @@ const AboutUsDetailed = () => {
             <div className="relative">
               <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl h-96 flex items-center justify-center border border-gray-700 overflow-hidden">
                 <Image
-                  src="/images/equipo.avif"
+                  src="/images/historia.jpg"
                   alt="Equipo de Arena Gym"
                   width={400}
                   height={400}
@@ -122,7 +122,7 @@ const AboutUsDetailed = () => {
 
               <div className="bg-gray-700 rounded-2xl h-48 flex items-center justify-center border border-gray-600 overflow-hidden">
                 <Image
-                  src="/images/pesas.avif"
+                  src="/images/mision.jpg"
                   alt="Pesas de gimnasio"
                   width={200}
                   height={200}
@@ -143,7 +143,7 @@ const AboutUsDetailed = () => {
 
               <div className="bg-gray-700 rounded-2xl h-48 flex items-center justify-center border border-gray-600 overflow-hidden">
                 <Image
-                  src="/images/cuerda.avif"
+                  src="/images/vision.jpg"
                   alt="Cuerda de gimnasio"
                   width={200}
                   height={200}
@@ -199,8 +199,8 @@ const AboutUsDetailed = () => {
                   
                   <div className="bg-red-900 bg-opacity-50 p-6 rounded-2xl border-l-4 border-red-500">
                     <p className="text-red-200 font-medium italic">
-                      &ldquo;Creo en el poder de la disciplina, la constancia y el trato humano para lograr resultados sostenibles. 
-                      Arena Gym es el reflejo de esa visión: un lugar donde el bienestar se trabaja con seriedad y pasión.&rdquo;
+                      &ldquo;Mi filosofía se basa en que cada persona tiene un potencial único. En Arena Gym, no solo transformamos cuerpos, 
+                      sino que forjamos mentalidades ganadoras a través del compromiso mutuo y la excelencia en cada entrenamiento.&rdquo;
                     </p>
                   </div>
                 </div>

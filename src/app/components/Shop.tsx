@@ -38,7 +38,7 @@ const Shop = () => {
       id: 2,
       name: "Camisa Deportiva de Hombre de Arena Gym",
       price: 189,
-      image: "/images/camisa_hombre.avif",
+      image: "/images/camisa_hombre.jpg",
       category: "Ropa Hombre",
       sizes: ["S", "M", "L", "XL"],
       colors: ["Negro", "Rojo", "Gris"],
@@ -48,7 +48,7 @@ const Shop = () => {
       id: 3,
       name: "Hoodie Unisex de Arena Gym",
       price: 269,
-      image: "/images/hoodie.avif",
+      image: "/images/hoddie.jpg",
       category: "Sudaderas",
       sizes: ["S", "M", "L", "XL"],
       colors: ["Negro", "Rojo", "Gris Oscuro"],
@@ -58,11 +58,31 @@ const Shop = () => {
       id: 4,
       name: "Termo de Arena Gym",
       price: 199,
-      image: "/images/termo.avif",
+      image: "/images/termo.jpg",
       category: "Accesorios",
       sizes: ["Único"],
       colors: ["Negro", "Rojo"],
       description: "Termo de acero inoxidable de 750ml. Mantiene la temperatura por 12 horas. Con logo oficial de Arena Gym grabado."
+    },
+    {
+      id: 5,
+      name: "Mochila Deportiva Arena Gym",
+      price: 349,
+      image: "/images/bag.jpg",
+      category: "Accesorios",
+      sizes: ["Único"],
+      colors: ["Negro", "Rojo", "Gris", "Azul Marino"],
+      description: "Mochila deportiva de alta capacidad con múltiples compartimentos. Ideal para llevar tu equipo de entrenamiento, ropa y accesorios. Material resistente al agua y diseño ergonómico con el logo de Arena Gym."
+    },
+    {
+      id: 6,
+      name: "Calcetas Deportivas Arena Gym",
+      price: 89,
+      image: "/images/calceta.jpg",
+      category: "Accesorios",
+      sizes: ["S", "M", "L"],
+      colors: ["Negro", "Blanco", "Gris", "Rojo", "Azul"],
+      description: "Calcetas deportivas de alta calidad con tecnología de absorción de humedad. Diseño anatómico para máximo confort durante el entrenamiento. Disponibles en múltiples colores con el logo de Arena Gym."
     }
   ]);
 
@@ -74,11 +94,18 @@ const Shop = () => {
   const [selectedColor, setSelectedColor] = useState<string>('');
   const [filters, setFilters] = useState({
     minPrice: 0,
-    maxPrice: 300,
+    maxPrice: 400,
     selectedSizes: [] as string[],
     selectedColors: [] as string[],
     sortBy: 'recommended'
   });
+
+  const [discountCode, setDiscountCode] = useState('');
+  const [appliedDiscount, setAppliedDiscount] = useState<{
+    code: string;
+    percentage: number;
+    type: 'percentage' | 'fixed';
+  } | null>(null);
 
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -178,6 +205,53 @@ const Shop = () => {
     return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
   };
 
+  const getDiscountAmount = () => {
+    if (!appliedDiscount) return 0;
+    
+    const subtotal = getTotalPrice();
+    if (appliedDiscount.type === 'percentage') {
+      return (subtotal * appliedDiscount.percentage) / 100;
+    } else {
+      return appliedDiscount.percentage;
+    }
+  };
+
+  const getFinalPrice = () => {
+    const subtotal = getTotalPrice();
+    const discount = getDiscountAmount();
+    return Math.max(0, subtotal - discount);
+  };
+
+  const applyDiscountCode = () => {
+    const code = discountCode.trim().toUpperCase();
+    
+    // Códigos de descuento válidos
+    const validCodes: { [key: string]: { percentage: number; type: 'percentage' | 'fixed' } } = {
+      'ARENA10': { percentage: 10, type: 'percentage' },
+      'WELCOME20': { percentage: 20, type: 'percentage' },
+      'FITNESS15': { percentage: 15, type: 'percentage' },
+      'GYM50': { percentage: 50, type: 'fixed' },
+      'SPORT25': { percentage: 25, type: 'percentage' }
+    };
+
+    if (validCodes[code]) {
+      setAppliedDiscount({
+        code,
+        percentage: validCodes[code].percentage,
+        type: validCodes[code].type
+      });
+      setDiscountCode('');
+      // Mostrar notificación de éxito
+      alert(`¡Código de descuento aplicado! ${validCodes[code].type === 'percentage' ? `${validCodes[code].percentage}% de descuento` : `$${validCodes[code].percentage} de descuento`}`);
+    } else {
+      alert('Código de descuento inválido. Intenta con: ARENA10, WELCOME20, FITNESS15, GYM50, SPORT25');
+    }
+  };
+
+  const removeDiscount = () => {
+    setAppliedDiscount(null);
+  };
+
   const getTotalItems = () => {
     return cart.reduce((total, item) => total + item.quantity, 0);
   };
@@ -255,7 +329,7 @@ const Shop = () => {
                   <input
                     type="range"
                     min="0"
-                    max="300"
+                    max="400"
                     value={filters.maxPrice}
                     onChange={(e) => handleFilterChange('maxPrice', parseInt(e.target.value))}
                     className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
@@ -271,7 +345,7 @@ const Shop = () => {
               <div className="mb-6">
                 <h4 className="font-semibold text-gray-700 mb-3">Talla</h4>
                 <div className="flex flex-wrap gap-2">
-                  {['XS', 'S', 'M', 'L', 'XL'].map(size => (
+                  {['XS', 'S', 'M', 'L', 'XL', 'Único'].map(size => (
                     <button
                       key={size}
                       onClick={() => toggleSizeFilter(size)}
@@ -291,7 +365,7 @@ const Shop = () => {
               <div className="mb-6">
                 <h4 className="font-semibold text-gray-700 mb-3">Color</h4>
                 <div className="space-y-2">
-                  {['Negro', 'Rojo', 'Blanco', 'Gris', 'Gris Oscuro'].map(color => (
+                  {['Negro', 'Rojo', 'Blanco', 'Gris', 'Gris Oscuro', 'Azul Marino', 'Azul'].map(color => (
                     <label key={color} className="flex items-center">
                       <input
                         type="checkbox"
@@ -309,7 +383,7 @@ const Shop = () => {
               <button
                 onClick={() => setFilters({
                   minPrice: 0,
-                  maxPrice: 300,
+                  maxPrice: 400,
                   selectedSizes: [],
                   selectedColors: [],
                   sortBy: 'recommended'
@@ -588,11 +662,79 @@ const Shop = () => {
                     ))}
                   </div>
 
+                  {/* Código de Descuento */}
                   <div className="border-t pt-4 sm:pt-6">
-                    <div className="flex justify-between items-center mb-4">
-                      <span className="text-lg sm:text-xl font-bold">Total:</span>
-                      <span className="text-xl sm:text-2xl font-bold text-red-600">${getTotalPrice()}.00 MXN</span>
+                    <div className="mb-4">
+                      <h4 className="text-sm sm:text-base font-semibold text-gray-900 mb-2">Código de Descuento</h4>
+                      
+                      {appliedDiscount ? (
+                        <div className="bg-green-50 border border-green-200 rounded-lg p-3 mb-3">
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <p className="text-sm font-medium text-green-800">
+                                Descuento aplicado: {appliedDiscount.code}
+                              </p>
+                              <p className="text-xs text-green-600">
+                                {appliedDiscount.type === 'percentage' 
+                                  ? `${appliedDiscount.percentage}% de descuento` 
+                                  : `$${appliedDiscount.percentage} de descuento`
+                                }
+                              </p>
+                            </div>
+                            <button
+                              onClick={removeDiscount}
+                              className="text-green-600 hover:text-green-800 text-sm font-medium"
+                            >
+                              Remover
+                            </button>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="flex space-x-2">
+                          <input
+                            type="text"
+                            value={discountCode}
+                            onChange={(e) => setDiscountCode(e.target.value)}
+                            placeholder="Ingresa código"
+                            className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                            onKeyPress={(e) => e.key === 'Enter' && applyDiscountCode()}
+                          />
+                          <button
+                            onClick={applyDiscountCode}
+                            className="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors duration-300 text-sm font-medium"
+                          >
+                            Aplicar
+                          </button>
+                        </div>
+                      )}
+                      
+                      <p className="text-xs text-gray-500 mt-2">
+                        Códigos válidos: ARENA10, WELCOME20, FITNESS15, GYM50, SPORT25
+                      </p>
                     </div>
+
+                    {/* Resumen de Precios */}
+                    <div className="bg-gray-50 rounded-lg p-3 mb-4">
+                      <div className="space-y-2 text-sm">
+                        <div className="flex justify-between">
+                          <span className="text-gray-600">Subtotal:</span>
+                          <span className="font-medium">${getTotalPrice()}.00 MXN</span>
+                        </div>
+                        {appliedDiscount && (
+                          <div className="flex justify-between">
+                            <span className="text-gray-600">Descuento:</span>
+                            <span className="font-medium text-green-600">-${getDiscountAmount()}.00 MXN</span>
+                          </div>
+                        )}
+                        <div className="border-t pt-2">
+                          <div className="flex justify-between">
+                            <span className="font-semibold text-gray-900">Total Final:</span>
+                            <span className="text-lg font-bold text-red-600">${getFinalPrice()}.00 MXN</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
                     <button className="w-full bg-gradient-to-r from-red-600 to-red-800 text-white py-2 sm:py-3 rounded-lg hover:from-red-700 hover:to-red-900 transition-all duration-300 font-medium text-sm sm:text-base">
                       Proceder al Checkout
                     </button>
