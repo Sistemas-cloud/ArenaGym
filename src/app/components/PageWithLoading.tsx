@@ -9,7 +9,7 @@ interface PageWithLoadingProps {
 }
 
 const PageWithLoading = ({ children, showLoading = true }: PageWithLoadingProps) => {
-  const [isLoading, setIsLoading] = useState(showLoading);
+  const [isLoading, setIsLoading] = useState(true); // Siempre inicia en true
 
   const handleLoadingComplete = () => {
     setIsLoading(false);

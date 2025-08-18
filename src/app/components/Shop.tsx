@@ -83,13 +83,17 @@ const Shop = () => {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
+    // Mostrar contenido inmediatamente al cargar
+    setIsVisible(true);
+    
+    // También mantener el observer para animaciones adicionales
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.1 }
     );
 
     if (sectionRef.current) {
@@ -226,9 +230,19 @@ const Shop = () => {
           <div className="w-24 h-1 bg-gradient-to-r from-red-600 to-red-800 mx-auto rounded-full"></div>
         </div>
 
+        {/* Mobile Filters Button */}
+        <div className="lg:hidden mb-6">
+          <button className="w-full bg-white text-gray-900 px-4 py-3 rounded-lg shadow-lg flex items-center justify-center space-x-2 font-medium">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.207A1 1 0 013 6.5V4z" />
+            </svg>
+            <span>Mostrar Filtros</span>
+          </button>
+        </div>
+
         <div className="grid lg:grid-cols-4 gap-8">
-          {/* Filters Sidebar */}
-          <div className={`lg:col-span-1 transform transition-all duration-1000 delay-300 ${
+          {/* Filters Sidebar - Hidden on mobile, shown on desktop */}
+          <div className={`hidden lg:block lg:col-span-1 transform transition-all duration-1000 delay-300 ${
             isVisible ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
           }`}>
             <div className="bg-white rounded-2xl shadow-lg p-6 sticky top-24">
@@ -309,16 +323,16 @@ const Shop = () => {
 
           {/* Products Grid */}
           <div className="lg:col-span-3">
-            {/* Sort and Cart */}
-            <div className={`flex justify-between items-center mb-8 transform transition-all duration-1000 delay-500 ${
+            {/* Sort and Cart - Responsive layout */}
+            <div className={`flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 space-y-4 sm:space-y-0 transform transition-all duration-1000 delay-500 ${
               isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
             }`}>
-              <div className="flex items-center space-x-4">
-                <span className="text-gray-600">{filteredProducts.length} productos</span>
+              <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
+                <span className="text-gray-600 text-sm sm:text-base">{filteredProducts.length} productos</span>
                 <select
                   value={filters.sortBy}
                   onChange={(e) => handleFilterChange('sortBy', e.target.value)}
-                  className="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                  className="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-red-500 text-sm sm:text-base"
                 >
                   <option value="recommended">Recomendados</option>
                   <option value="price-low">Precio: Menor a Mayor</option>
@@ -327,15 +341,15 @@ const Shop = () => {
                 </select>
               </div>
 
-              {/* Cart Button */}
+              {/* Cart Button - Full width on mobile */}
               <button
                 onClick={() => setIsCartOpen(true)}
-                className="relative bg-red-600 text-white px-6 py-3 rounded-full hover:bg-red-700 transition-colors duration-300 flex items-center space-x-2"
+                className="relative bg-red-600 text-white px-4 sm:px-6 py-3 rounded-full hover:bg-red-700 transition-colors duration-300 flex items-center justify-center space-x-2 w-full sm:w-auto"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.1 5M7 13l-1.1 5m0 0h9.1M17 13v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6" />
                 </svg>
-                <span>Carrito ({getTotalItems()})</span>
+                <span className="text-sm sm:text-base">Carrito ({getTotalItems()})</span>
                 {getTotalItems() > 0 && (
                   <span className="absolute -top-2 -right-2 bg-yellow-400 text-black text-xs rounded-full h-6 w-6 flex items-center justify-center font-bold">
                     {getTotalItems()}
@@ -344,8 +358,8 @@ const Shop = () => {
               </button>
             </div>
 
-            {/* Products */}
-            <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+            {/* Products - Responsive grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
                              {filteredProducts.map((product, index) => (
                 <div
                   key={product.id}
@@ -354,28 +368,28 @@ const Shop = () => {
                   }`}
                   style={{ transitionDelay: `${600 + index * 100}ms` }}
                 >
-                  <div className="relative h-64 bg-gray-200 overflow-hidden">
+                  <div className="relative h-48 sm:h-64 bg-gray-200 overflow-hidden">
                     <Image
                       src={product.image}
                       alt={product.name}
                       fill
                       className="object-cover"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
                     />
                   </div>
                   
-                  <div className="p-6">
-                    <h3 className="text-lg font-bold text-gray-900 mb-2">{product.name}</h3>
-                    <p className="text-gray-600 text-sm mb-4 line-clamp-2">{product.description}</p>
+                  <div className="p-4 sm:p-6">
+                    <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2 line-clamp-2">{product.name}</h3>
+                    <p className="text-gray-600 text-xs sm:text-sm mb-4 line-clamp-2">{product.description}</p>
                     
                     <div className="flex items-center justify-between mb-4">
-                      <div className="text-2xl font-bold text-red-600">${product.price}.00</div>
-                      <div className="text-sm text-gray-500">{product.category}</div>
+                      <div className="text-xl sm:text-2xl font-bold text-red-600">${product.price}.00</div>
+                      <div className="text-xs sm:text-sm text-gray-500">{product.category}</div>
                     </div>
 
                     <button
                       onClick={() => openProductModal(product)}
-                      className="w-full bg-gradient-to-r from-red-600 to-red-800 text-white py-3 rounded-lg hover:from-red-700 hover:to-red-900 transition-all duration-300 font-medium"
+                      className="w-full bg-gradient-to-r from-red-600 to-red-800 text-white py-2 sm:py-3 rounded-lg hover:from-red-700 hover:to-red-900 transition-all duration-300 font-medium text-sm sm:text-base"
                     >
                       Ver Detalles
                     </button>
@@ -389,11 +403,11 @@ const Shop = () => {
 
       {/* Product Modal */}
       {selectedProduct && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="p-6">
-              <div className="flex justify-between items-start mb-6">
-                <h2 className="text-2xl font-bold text-gray-900">{selectedProduct.name}</h2>
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-2 sm:p-4">
+          <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-y-auto">
+            <div className="p-4 sm:p-6">
+              <div className="flex justify-between items-start mb-4 sm:mb-6">
+                <h2 className="text-lg sm:text-2xl font-bold text-gray-900 pr-4">{selectedProduct.name}</h2>
                 <button
                   onClick={() => {
                     setSelectedProduct(null);
@@ -408,20 +422,20 @@ const Shop = () => {
                 </button>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="h-64 bg-gray-200 rounded-lg overflow-hidden relative">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                <div className="h-48 sm:h-64 bg-gray-200 rounded-lg overflow-hidden relative">
                   <Image
                     src={selectedProduct.image}
                     alt={selectedProduct.name}
                     fill
                     className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 50vw"
+                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 50vw"
                   />
                 </div>
 
                 <div>
-                  <p className="text-gray-600 mb-4">{selectedProduct.description}</p>
-                  <div className="text-3xl font-bold text-red-600 mb-6">${selectedProduct.price}.00</div>
+                  <p className="text-gray-600 text-sm sm:text-base mb-4">{selectedProduct.description}</p>
+                  <div className="text-2xl sm:text-3xl font-bold text-red-600 mb-4 sm:mb-6">${selectedProduct.price}.00</div>
                   
                   {/* Selecciones actuales */}
                   <div className="mb-6 p-4 bg-gray-50 rounded-lg">
@@ -500,11 +514,11 @@ const Shop = () => {
 
       {/* Cart Modal */}
       {isCartOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="p-6">
-              <div className="flex justify-between items-start mb-6">
-                <h2 className="text-2xl font-bold text-gray-900">Carrito de Compras</h2>
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-2 sm:p-4">
+          <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-y-auto">
+            <div className="p-4 sm:p-6">
+              <div className="flex justify-between items-start mb-4 sm:mb-6">
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Carrito de Compras</h2>
                 <button
                   onClick={() => setIsCartOpen(false)}
                   className="text-gray-500 hover:text-gray-700"
@@ -516,56 +530,56 @@ const Shop = () => {
               </div>
 
               {cart.length === 0 ? (
-                <div className="text-center py-12">
-                  <svg className="w-16 h-16 mx-auto mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="text-center py-8 sm:py-12">
+                  <svg className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.1 5M7 13l-1.1 5m0 0h9.1" />
                   </svg>
-                  <p className="text-gray-600">Tu carrito está vacío</p>
+                  <p className="text-gray-600 text-sm sm:text-base">Tu carrito está vacío</p>
                   <button
                     onClick={() => setIsCartOpen(false)}
-                    className="mt-4 bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors duration-300"
+                    className="mt-4 bg-red-600 text-white px-4 sm:px-6 py-2 rounded-lg hover:bg-red-700 transition-colors duration-300 text-sm sm:text-base"
                   >
                     Continuar Comprando
                   </button>
                 </div>
               ) : (
                 <div>
-                  <div className="space-y-4 mb-6">
-                                         {cart.map((item) => (
-                      <div key={`${item.id}-${item.selectedSize}-${item.selectedColor}`} className="flex items-center space-x-4 p-4 border border-gray-200 rounded-lg">
-                        <div className="w-16 h-16 bg-gray-200 rounded-lg overflow-hidden relative">
+                  <div className="space-y-3 sm:space-y-4 mb-4 sm:mb-6">
+                    {cart.map((item) => (
+                      <div key={`${item.id}-${item.selectedSize}-${item.selectedColor}`} className="flex items-center space-x-3 sm:space-x-4 p-3 sm:p-4 border border-gray-200 rounded-lg">
+                        <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gray-200 rounded-lg overflow-hidden relative flex-shrink-0">
                           <Image
                             src={item.image}
                             alt={item.name}
                             fill
                             className="object-cover"
-                            sizes="64px"
+                            sizes="(max-width: 640px) 48px, 64px"
                           />
                         </div>
-                        <div className="flex-1">
-                          <h3 className="font-medium text-gray-900">{item.name}</h3>
-                          <p className="text-sm text-gray-600">Talla: {item.selectedSize} | Color: {item.selectedColor}</p>
-                          <p className="text-lg font-bold text-red-600">${item.price}.00</p>
+                        <div className="flex-1 min-w-0">
+                          <h3 className="font-medium text-gray-900 text-sm sm:text-base line-clamp-1">{item.name}</h3>
+                          <p className="text-xs sm:text-sm text-gray-600">Talla: {item.selectedSize} | Color: {item.selectedColor}</p>
+                          <p className="text-base sm:text-lg font-bold text-red-600">${item.price}.00</p>
                         </div>
-                        <div className="flex items-center space-x-2">
+                        <div className="flex items-center space-x-1 sm:space-x-2 flex-shrink-0">
                           <button
                             onClick={() => updateQuantity(item.id, item.selectedSize, item.selectedColor, item.quantity - 1)}
-                            className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300 transition-colors duration-300"
+                            className="w-6 h-6 sm:w-8 sm:h-8 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300 transition-colors duration-300 text-sm sm:text-base"
                           >
                             -
                           </button>
-                          <span className="w-8 text-center">{item.quantity}</span>
+                          <span className="w-6 sm:w-8 text-center text-sm sm:text-base">{item.quantity}</span>
                           <button
                             onClick={() => updateQuantity(item.id, item.selectedSize, item.selectedColor, item.quantity + 1)}
-                            className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300 transition-colors duration-300"
+                            className="w-6 h-6 sm:w-8 sm:h-8 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300 transition-colors duration-300 text-sm sm:text-base"
                           >
                             +
                           </button>
                           <button
                             onClick={() => removeFromCart(item.id, item.selectedSize, item.selectedColor)}
-                            className="text-red-600 hover:text-red-800 ml-2"
+                            className="text-red-600 hover:text-red-800 ml-1 sm:ml-2 p-1"
                           >
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                             </svg>
                           </button>
@@ -574,12 +588,12 @@ const Shop = () => {
                     ))}
                   </div>
 
-                  <div className="border-t pt-6">
+                  <div className="border-t pt-4 sm:pt-6">
                     <div className="flex justify-between items-center mb-4">
-                      <span className="text-xl font-bold">Total:</span>
-                      <span className="text-2xl font-bold text-red-600">${getTotalPrice()}.00 MXN</span>
+                      <span className="text-lg sm:text-xl font-bold">Total:</span>
+                      <span className="text-xl sm:text-2xl font-bold text-red-600">${getTotalPrice()}.00 MXN</span>
                     </div>
-                    <button className="w-full bg-gradient-to-r from-red-600 to-red-800 text-white py-3 rounded-lg hover:from-red-700 hover:to-red-900 transition-all duration-300 font-medium">
+                    <button className="w-full bg-gradient-to-r from-red-600 to-red-800 text-white py-2 sm:py-3 rounded-lg hover:from-red-700 hover:to-red-900 transition-all duration-300 font-medium text-sm sm:text-base">
                       Proceder al Checkout
                     </button>
                   </div>

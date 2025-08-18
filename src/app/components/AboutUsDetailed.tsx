@@ -8,13 +8,17 @@ const AboutUsDetailed = () => {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
+    // Mostrar contenido inmediatamente al cargar
+    setIsVisible(true);
+    
+    // También mantener el observer para animaciones adicionales
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.1 }
     );
 
     if (sectionRef.current) {

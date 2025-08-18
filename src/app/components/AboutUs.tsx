@@ -160,12 +160,12 @@ const AboutUs = () => {
                   <div className="text-gray-300 font-medium">Años Experiencia</div>
                 </div>
                 <div className="group">
-                  <div className="text-5xl font-bold mb-2 text-red-400 group-hover:text-red-300 transition-colors duration-300">15</div>
-                  <div className="text-gray-300 font-medium">Especialistas</div>
-                </div>
-                <div className="group">
                   <div className="text-5xl font-bold mb-2 text-red-400 group-hover:text-red-300 transition-colors duration-300">1000+</div>
                   <div className="text-gray-300 font-medium">Transformaciones</div>
+                </div>
+                <div className="group">
+                  <div className="text-5xl font-bold mb-2 text-red-400 group-hover:text-red-300 transition-colors duration-300">100%</div>
+                  <div className="text-gray-300 font-medium">Compromiso</div>
                 </div>
               </div>
             </div>
