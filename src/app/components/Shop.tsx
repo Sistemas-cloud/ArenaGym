@@ -83,7 +83,17 @@ const Shop = () => {
       sizes: ["S", "M", "L"],
       colors: ["Negro", "Blanco", "Gris", "Rojo", "Azul"],
       description: "Calcetas deportivas de alta calidad con tecnología de absorción de humedad. Diseño anatómico para máximo confort durante el entrenamiento. Disponibles en múltiples colores con el logo de Arena Gym."
-    }
+    },
+    {
+      id: 7,
+      name: "Toalla de Arena Gym",
+      price: 189,
+      image: "/images/towel.png",
+      category: "Accesorios",
+      sizes: ["Único"],
+      colors: ["Negro", "Rojo", "Gris"],
+      description: "Toalla de algodón con logo de Arena Gym. Ideal para secarte después del entrenamiento."
+    },
   ]);
 
   const [filteredProducts, setFilteredProducts] = useState<Product[]>(products);

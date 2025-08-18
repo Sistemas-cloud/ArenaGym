@@ -187,14 +187,8 @@ const AboutUsDetailed = () => {
               <div className="p-8 lg:p-12">
                 <div className="space-y-6 text-lg text-gray-200 leading-relaxed">
                   <p>
-                    Mi nombre es Hugo Vázquez y soy el fundador de Arena Gym, 
-                    un gimnasio privado enfocado en transformar la vida de las personas a través de un 
-                    acompañamiento profesional en entrenamiento y nutrición.
-                  </p>
-                  
-                  <p>
-                    Mi compromiso ha sido crear un espacio donde cada cliente reciba 
-                    <strong className="text-red-400"> atención personalizada</strong>, con planes adaptados a sus metas reales.
+                  Soy Hugo Vázquez, fundador de Arena Gym, un gimnasio privado diseñado para transformar la vida de las personas mediante un acompañamiento integral en entrenamiento y nutrición.
+                  Desde el inicio, mi propósito ha sido construir un espacio exclusivo donde cada miembro reciba atención personalizada, con planes creados a la medida de sus metas y necesidades reales.
                   </p>
                   
                   <div className="bg-red-900 bg-opacity-50 p-6 rounded-2xl border-l-4 border-red-500">
