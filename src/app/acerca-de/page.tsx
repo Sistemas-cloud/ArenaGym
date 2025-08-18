@@ -10,9 +10,9 @@ export const revalidate = 0;
 export default function AcercaDePage() {
   return (
     <PageWithLoading>
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900">
         <Navigation />
-        <div className="pt-20">
+        <div className="pt-32">
           <AboutUsDetailed />
         </div>
         <Footer />

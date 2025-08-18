@@ -25,57 +25,40 @@ const PlansAndPricing = () => {
 
   const plans = [
     {
-      name: "BÁSICO",
-      price: "$800",
+      name: "PLAN PLATINUM",
+      price: "$799",
       period: "/mes",
-      description: "Perfecto para comenzar tu transformación",
+      description: "Plan nutricional completo con acceso al gimnasio",
       features: [
+        "Asesoría en suplementación",
+        "Rutinas personalizadas según objetivos",
+        "Evaluación corporal con InBody",
+        "Alimentación personalizada",
         "Acceso completo al gimnasio",
-        "Rutina personalizada inicial",
-        "Evaluación InBody mensual",
-        "Asesoría básica de entrenamiento",
-        "Acceso a área de cardio",
         "Horario: 6:00 AM - 10:00 PM"
       ],
       popular: false,
       gradient: "from-gray-600 to-gray-800"
     },
     {
-      name: "PREMIUM",
-      price: "$1,200",
+      name: "PLAN PREMIUM",
+      price: "$2,299",
       period: "/mes",
-      description: "La opción más popular para resultados óptimos",
+      description: "Entrenamiento completo 1 a 1 todo el mes",
       features: [
-        "Todo lo del plan Básico",
-        "Asesoría nutricional personalizada",
-        "Plan alimenticio detallado",
-        "Seguimiento semanal de progreso",
-        "Acceso a clases grupales",
-        "Asesoría en suplementación",
-        "Acceso 24/7",
-        "Área VIP exclusiva"
+        "Plan Nutricional completo",
+        "Acceso completo al gimnasio",
+        "Entrenamiento completo 1 a 1 todo el mes",
+        "Asesoría en suplementación personalizada",
+        "Rutinas personalizadas según objetivos",
+        "Evaluación corporal con InBody",
+        "Alimentación personalizada",
+        "Seguimiento diario de progreso",
+        "Acceso prioritario a equipos",
+        "Horario: 6:00 AM - 10:00 PM"
       ],
       popular: true,
       gradient: "from-red-600 to-red-800"
-    },
-    {
-      name: "ELITE",
-      price: "$1,800",
-      period: "/mes",
-      description: "Máximo nivel de personalización y exclusividad",
-      features: [
-        "Todo lo del plan Premium",
-        "Entrenador personal dedicado",
-        "Evaluación InBody semanal",
-        "Consultas ilimitadas",
-        "Acceso a área VIP premium",
-        "Servicios de recuperación",
-        "Plan de suplementos incluido",
-        "Acceso prioritario a equipos",
-        "Sesiones de coaching mental"
-      ],
-      popular: false,
-      gradient: "from-yellow-600 to-yellow-800"
     }
   ];
 
@@ -96,7 +79,7 @@ const PlansAndPricing = () => {
         </div>
 
         {/* Plans Grid */}
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {plans.map((plan, index) => (
             <div
               key={plan.name}
