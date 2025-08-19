@@ -91,7 +91,7 @@ const Testimonials = () => {
           isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
         }`}>
           <h2 className="text-5xl font-bold mb-4">
-            Lo que Dicen Nuestros <span className="text-red-500">Miembros</span>
+            TESTIMONIOS
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-6">
             Historias reales de transformación que inspiran y motivan

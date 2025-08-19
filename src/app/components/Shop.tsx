@@ -28,7 +28,7 @@ const Shop = () => {
       id: 1,
       name: "Camisa Deportiva de Mujer de Arena Gym",
       price: 189,
-      image: "/images/camisa_mujer.avif",
+      image: "/images/camisa_mujer.jpg",
       category: "Ropa Mujer",
       sizes: ["XS", "S", "M", "L", "XL"],
       colors: ["Negro", "Rojo", "Blanco"],
