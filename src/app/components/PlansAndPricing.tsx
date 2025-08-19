@@ -41,6 +41,26 @@ const PlansAndPricing = () => {
       gradient: "from-gray-600 to-gray-800"
     },
     {
+      name: "PLAN ORO",
+      price: "$1,699",
+      period: "/mes",
+      description: "Entrenamiento 1 a 1 por 15 días seleccionables",
+      features: [
+        "Plan Nutricional completo",
+        "Acceso completo al gimnasio",
+        "Entrenamiento 1 a 1 por 15 días seleccionables del mes",
+        "Asesoría en suplementación personalizada",
+        "Rutinas personalizadas según objetivos",
+        "Evaluación corporal con InBody",
+        "Alimentación personalizada",
+        "Seguimiento diario de progreso",
+        "Acceso prioritario a equipos",
+        "Horario: 6:00 AM - 10:00 PM"
+      ],
+      popular: false,
+      gradient: "from-yellow-600 to-yellow-800"
+    },
+    {
       name: "PLAN PREMIUM",
       price: "$2,299",
       period: "/mes",
@@ -79,7 +99,7 @@ const PlansAndPricing = () => {
         </div>
 
         {/* Plans Grid */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {plans.map((plan, index) => (
             <div
               key={plan.name}
